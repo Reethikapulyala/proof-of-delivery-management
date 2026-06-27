@@ -297,7 +297,7 @@ export default function Login({ onLoginSuccess, triggerToast }) {
         {/* Left column: Illustration & Info */}
         <div className="login-left">
           <img 
-            src="/login_illustration.png" 
+            src="./login_illustration.png" 
             alt="Proof of Delivery Illustration" 
             className="login-illustration-img"
           />
