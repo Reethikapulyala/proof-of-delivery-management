@@ -28,7 +28,9 @@ export default function App() {
   const [activeSubView, setActiveSubView] = useState('shipments_core');
   const [previousView, setPreviousView] = useState('dashboard');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(() => {
+    return localStorage.getItem('hk_shipping_theme') === 'dark';
+  });
   const [selectedDelivery, setSelectedDelivery] = useState(null);
 
   const handleSelectDelivery = (delivery) => {
@@ -115,8 +117,10 @@ export default function App() {
   useEffect(() => {
     if (isDarkTheme) {
       document.body.classList.add('dark-theme');
+      localStorage.setItem('hk_shipping_theme', 'dark');
     } else {
       document.body.classList.remove('dark-theme');
+      localStorage.setItem('hk_shipping_theme', 'light');
     }
   }, [isDarkTheme]);
 
@@ -467,6 +471,8 @@ export default function App() {
           userProfile={userProfile}
           onViewChange={setActiveView}
           onLogout={handleLogout}
+          isDark={isDarkTheme}
+          onToggleTheme={() => setIsDarkTheme(!isDarkTheme)}
         />
 
         {/* View Layout Renderer */}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  LayoutDashboard, FileText, Package, X, Truck
+  LayoutDashboard, FileText, Package, X, Truck, Settings as SettingsIcon
 } from 'lucide-react';
 
 export default function Sidebar({ activeView, onViewChange, isOpen, onClose, userRole = 'Super Admin' }) {
@@ -8,6 +8,7 @@ export default function Sidebar({ activeView, onViewChange, isOpen, onClose, use
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'pod-form', label: 'POD Form', icon: FileText },
     { id: 'shipments', label: 'Shipments Tracking', icon: Truck },
+    { id: 'settings', label: 'Settings', icon: SettingsIcon },
   ];
 
   const hasPermission = (role, viewId) => {
@@ -16,7 +17,7 @@ export default function Sidebar({ activeView, onViewChange, isOpen, onClose, use
     if (viewId === 'pod-form') {
       return ['Super Admin', 'Transport Admin'].includes(role);
     }
-    if (viewId === 'shipments') return true;
+    if (viewId === 'shipments' || viewId === 'settings') return true;
     return false;
   };
 

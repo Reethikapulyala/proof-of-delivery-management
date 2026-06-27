@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, Bell, ChevronDown, User, LogOut, CheckCircle2, Clock, AlertTriangle } from 'lucide-react';
+import { Menu, Bell, ChevronDown, User, LogOut, CheckCircle2, Clock, AlertTriangle, Sun, Moon } from 'lucide-react';
 
 export default function Header({ 
   activeView, 
@@ -10,7 +10,9 @@ export default function Header({
   onMarkAsRead,
   userProfile,
   onViewChange,
-  onLogout
+  onLogout,
+  isDark,
+  onToggleTheme
 }) {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -86,6 +88,16 @@ export default function Header({
       </div>
 
       <div className="header-right">
+        {/* Theme Toggle Button */}
+        <button 
+          className="header-action-btn" 
+          onClick={onToggleTheme}
+          title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          aria-label="Toggle Theme"
+        >
+          {isDark ? <Sun size={20} style={{ color: '#fbbf24' }} /> : <Moon size={20} />}
+        </button>
+
         {/* Notifications Dropdown */}
         <div className="position-relative" style={{ position: 'relative' }} ref={notifRef}>
           <button 
